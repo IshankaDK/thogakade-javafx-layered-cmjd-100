@@ -49,5 +49,6 @@ Java, JavaFX and MySQL Standalone Demo (Thogakade for CMJD100 (IJSE)).
 
 2. Add JavaFx libraries(https://openjfx.io/), jfoenix-(version).jar and MySQl connector to the /lib folder.
 3. Define vmArgs in launch.json.
-4. Change the Database credentials in DBConnection.java in to ypurs.
-5. Run the Application.
+4. Execute Database script db.sql in MySQL for define your database.
+5. Change the Database credentials in DBConnection.java in to yours.
+6. Run the Application.
