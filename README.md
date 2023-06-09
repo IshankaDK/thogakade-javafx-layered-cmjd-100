@@ -22,10 +22,6 @@ Java, JavaFX and MySQL Standalone Demo (Thogakade for CMJD100 (IJSE)).
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Development Setup](#development-setup)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Getting Started
 
