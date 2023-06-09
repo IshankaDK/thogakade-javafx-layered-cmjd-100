@@ -32,6 +32,12 @@ Java, JavaFX and MySQL Standalone Demo (Thogakade for CMJD100 (IJSE)).
 - JAVAFX
   https://openjfx.io/openjfx-docs/
 
+- JFoenix
+  https://jar-download.com/?search_box=jfoenix
+
+- MySQL Java Connector
+  https://mvnrepository.com/artifact/mysql/mysql-connector-java
+
 - VsCode
   https://code.visualstudio.com.
 
