@@ -1,13 +1,13 @@
 package doa;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.DBConnection;
 
 public class CrudUtil {
 
+    @SuppressWarnings("unchecked")
     public static <T> T execute(String sql, Object... ar) throws ClassNotFoundException, SQLException {
 
         PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(sql);

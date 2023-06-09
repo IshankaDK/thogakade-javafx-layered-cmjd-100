@@ -17,6 +17,7 @@ public class DaoFactory {
         CUSTOMER, ITEM, ORDER
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T getDao(DAOType type) {
         switch (type) {
             case CUSTOMER:

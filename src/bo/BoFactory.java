@@ -18,6 +18,7 @@ public class BoFactory {
         CUSTOMER, ITEM, ORDER
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T getBo(BoType type) {
         switch (type) {
             case CUSTOMER:
