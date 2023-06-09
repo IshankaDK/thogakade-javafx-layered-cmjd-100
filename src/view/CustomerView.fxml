@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerController">
+   <children>
+      <Label alignment="CENTER" layoutX="113.0" layoutY="29.0" prefHeight="58.0" prefWidth="419.0" text="Customer View Form">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.45075761549400567">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.12600000202655792" green="0.6602315306663513" blue="0.8399999737739563" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.008075370121130547">
+                     <color>
+                        <Color red="0.12600000202655792" green="0.6602315306663513" blue="0.8399999737739563" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.9946164199192464">
+                     <color>
+                        <Color red="0.052000001072883606" green="0.05755634605884552" blue="0.12999999523162842" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.052000001072883606" green="0.05755634605884552" blue="0.12999999523162842" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <TextField fx:id="txtCustomerId" layoutX="36.0" layoutY="110.0" onAction="#txtCustomerIDOnAction" prefHeight="47.0" prefWidth="265.0" promptText="Customer ID">
+         <font>
+            <Font size="21.0" />
+         </font></TextField>
+      <TextField fx:id="txtCustomerName" layoutX="36.0" layoutY="172.0" prefHeight="47.0" prefWidth="265.0" promptText="Customer Name">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtAddress" layoutX="36.0" layoutY="236.0" prefHeight="47.0" prefWidth="265.0" promptText="Address">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtCustomerSalary" layoutX="36.0" layoutY="299.0" prefHeight="47.0" prefWidth="265.0" promptText="Salary">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextField>
+      <JFXButton layoutX="212.0" layoutY="368.0" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #3498db;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <TableView fx:id="tblCustomer" layoutX="323.0" layoutY="110.0" prefHeight="236.0" prefWidth="449.0">
+        <columns>
+          <TableColumn id="id" fx:id="colID" prefWidth="62.39990234375" text="ID" />
+          <TableColumn id="name" fx:id="colName" prefWidth="98.4000244140625" text="Name" />
+            <TableColumn id="address" fx:id="colAddress" prefWidth="96.00003051757812" text="Address" />
+            <TableColumn id="salary" fx:id="colSalary" prefWidth="94.4000244140625" text="Salary" />
+            <TableColumn id="btnDelete" fx:id="colDeleteButton" prefWidth="94.4000244140625" text="Delete" />
+        </columns>
+      </TableView>
+      <JFXButton layoutX="113.0" layoutY="368.0" onAction="#btnSaveOnAction" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #27ae60;" text="Save" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>
