@@ -14,4 +14,6 @@ public interface ItemBo {
     public ItemDTO getItem(String code) throws Exception;
 
     public ArrayList<ItemDTO> getAllItem() throws Exception;
+
+    public ArrayList<ItemDTO> getAllItemCode() throws Exception;
 }

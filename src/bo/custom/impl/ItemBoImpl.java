@@ -49,4 +49,15 @@ public class ItemBoImpl implements ItemBo {
         return dtoList;
     }
 
+    @Override
+    public ArrayList<ItemDTO> getAllItemCode() throws Exception {
+        ArrayList<Item> list = dao.getItemCode();
+        ArrayList<ItemDTO> dtoList = new ArrayList<>();
+
+        for (Item i : list) {
+            dtoList.add(new ItemDTO(i.getCode()));
+        }
+        return dtoList;
+    }
+
 }

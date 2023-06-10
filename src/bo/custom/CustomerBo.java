@@ -16,6 +16,8 @@ public interface CustomerBo {
 
     public ArrayList<CustomerDTO> getAllCustomer() throws Exception;
 
+    public ArrayList<CustomerDTO> getAllCustomerID() throws Exception;
+
     // other logics
 
 }

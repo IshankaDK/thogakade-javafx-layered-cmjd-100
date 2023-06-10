@@ -16,6 +16,10 @@ public class Item implements SuperEntity {
         this.qtyOnHand = qtyOnHand;
     }
 
+    public Item(String code) {
+        this.code = code;
+    }
+
     public String getCode() {
         return code;
     }

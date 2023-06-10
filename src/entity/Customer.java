@@ -16,6 +16,10 @@ public class Customer implements SuperEntity {
         this.salary = salary;
     }
 
+    public Customer(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

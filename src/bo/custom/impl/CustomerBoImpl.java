@@ -49,4 +49,15 @@ public class CustomerBoImpl implements CustomerBo {
         return dtoList;
     }
 
+    @Override
+    public ArrayList<CustomerDTO> getAllCustomerID() throws Exception {
+        ArrayList<Customer> list = dao.getCustomerID();
+        ArrayList<CustomerDTO> dtoList = new ArrayList<>();
+
+        for (Customer c : list) {
+            dtoList.add(new CustomerDTO(c.getId()));
+        }
+        return dtoList;
+    }
+
 }

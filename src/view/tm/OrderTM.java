@@ -1,23 +1,26 @@
-package dto;
+package view.tm;
 
-public class ItemDTO {
+import javafx.scene.control.Button;
+
+public class OrderTM {
     private String code;
     private String description;
     private double unitPrice;
     private double qtyOnHand;
+    private double total;
+    private Button btnRemove;
 
-    public ItemDTO() {
+    public OrderTM() {
     }
 
-    public ItemDTO(String code, String description, double unitPrice, double qtyOnHand) {
+    public OrderTM(String code, String description, double unitPrice, double qtyOnHand, double total,
+            Button btnRemove) {
         this.code = code;
         this.description = description;
         this.unitPrice = unitPrice;
         this.qtyOnHand = qtyOnHand;
-    }
-
-    public ItemDTO(String code) {
-        this.code = code;
+        this.total = total;
+        this.btnRemove = btnRemove;
     }
 
     public String getCode() {
@@ -50,6 +53,22 @@ public class ItemDTO {
 
     public void setQtyOnHand(double qtyOnHand) {
         this.qtyOnHand = qtyOnHand;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public Button getBtnRemove() {
+        return btnRemove;
+    }
+
+    public void setBtnRemove(Button btnRemove) {
+        this.btnRemove = btnRemove;
     }
 
 }

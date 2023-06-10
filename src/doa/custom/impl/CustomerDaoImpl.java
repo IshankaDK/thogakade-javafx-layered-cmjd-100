@@ -50,4 +50,16 @@ public class CustomerDaoImpl implements CustomerDAO {
         return customerList;
     }
 
+    @Override
+    public ArrayList<Customer> getCustomerID() throws Exception {
+        ResultSet set = CrudUtil.execute("SELECT id FROM Customer");
+        ArrayList<Customer> customerIDList = new ArrayList<>();
+
+        while (set.next()) {
+            customerIDList.add(new Customer(set.getInt(1)));
+        }
+
+        return customerIDList;
+    }
+
 }
