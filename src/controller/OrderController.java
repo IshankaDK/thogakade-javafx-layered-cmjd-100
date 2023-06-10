@@ -11,12 +11,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import view.tm.OrderTM;
 
 public class OrderController {
@@ -64,7 +67,7 @@ public class OrderController {
     private Label lblUnitPrice;
 
     @FXML
-    private TableView<OrderTM> tblItem;
+    private TableView<OrderTM> tblOrder;
 
     @FXML
     private TextField txtBuyingQty;
@@ -80,9 +83,37 @@ public class OrderController {
         loadItemCode();
     }
 
+    ObservableList<OrderTM> tmList = FXCollections.observableArrayList();
+
     @FXML
     void btnAddToCartOnAction(ActionEvent event) {
+        colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colQtyOnHand.setCellValueFactory(new PropertyValueFactory<>("qtyOnHand"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        colRemove.setCellValueFactory(new PropertyValueFactory<>("btnRemove"));
 
+        try {
+            String code = cmbItemCode.getValue();
+            String description = lblDescription.getText();
+            Double unitPrice = Double.parseDouble(lblUnitPrice.getText());
+            Double qtyOnHand = Double.parseDouble(lblQtyOnHand.getText());
+            Double qty = Double.parseDouble(txtBuyingQty.getText());
+            Double total = qty * unitPrice;
+            Button btnRemove = new Button("Remove");
+            btnRemove.setMaxSize(100, 50);
+            btnRemove.setCursor(Cursor.HAND);
+            btnRemove.setStyle("-fx-background-color:#e74c3c; -fx-font-weight:bold");
+            btnRemove.setTextFill(Color.web("#ecf0f1"));
+
+            tmList.add(new OrderTM(code, description, unitPrice, qtyOnHand, qty, total, btnRemove));
+            tblOrder.setItems(tmList);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -45,7 +45,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <TableView fx:id="tblItem" layoutX="41.0" layoutY="375.0" prefHeight="236.0" prefWidth="767.0">
+      <TableView fx:id="tblOrder" layoutX="41.0" layoutY="375.0" prefHeight="236.0" prefWidth="767.0">
          <columns>
             <TableColumn id="code" fx:id="colCode" prefWidth="115.199951171875" text="Item Code" />
             <TableColumn id="description" fx:id="colDescription" prefWidth="149.6000518798828" text="Description" />
