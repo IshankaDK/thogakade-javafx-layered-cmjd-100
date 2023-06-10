@@ -18,7 +18,10 @@ public class MainController {
     }
 
     @FXML
-    void btnItemOnAction(ActionEvent event) {
-
+    void btnItemOnAction(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("../view/ItemView.fxml"))));
+        stage.setTitle("Customer Form");
+        stage.show();
     }
 }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ItemController">
+   <children>
+      <Label alignment="CENTER" layoutX="123.0" layoutY="39.0" prefHeight="58.0" prefWidth="419.0" text="Item View Form">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.45075761549400567">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.12600000202655792" green="0.6602315306663513" blue="0.8399999737739563" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.008075370121130547">
+                     <color>
+                        <Color red="0.12600000202655792" green="0.6602315306663513" blue="0.8399999737739563" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.9946164199192464">
+                     <color>
+                        <Color red="0.052000001072883606" green="0.05755634605884552" blue="0.12999999523162842" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.052000001072883606" green="0.05755634605884552" blue="0.12999999523162842" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <TextField fx:id="txtItemCode" layoutX="46.0" layoutY="120.0" onAction="#txtItemCodeOnAction" prefHeight="47.0" prefWidth="265.0" promptText="Item Code">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtDescription" layoutX="46.0" layoutY="182.0" prefHeight="47.0" prefWidth="265.0" promptText="Description">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtUnitPrice" layoutX="46.0" layoutY="246.0" prefHeight="47.0" prefWidth="265.0" promptText="Unit Price">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtQtyOnHand" layoutX="46.0" layoutY="309.0" prefHeight="47.0" prefWidth="265.0" promptText="Qty On Hand">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextField>
+      <JFXButton layoutX="222.0" layoutY="378.0" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #3498db;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <TableView fx:id="tblItem" layoutX="333.0" layoutY="120.0" prefHeight="236.0" prefWidth="465.0">
+         <columns>
+            <TableColumn id="code" fx:id="colCode" prefWidth="72.79998779296875" text="Item Code" />
+            <TableColumn id="description" fx:id="colDescription" prefWidth="110.40005493164062" text="Description" />
+            <TableColumn id="unitPrice" fx:id="colUnitPrice" prefWidth="98.39996337890625" text="Unit Price" />
+            <TableColumn id="qtyOnHand" fx:id="colQty" prefWidth="94.40008544921875" text="Qty On Hand" />
+            <TableColumn id="btnDelete" fx:id="colDeleteButton" prefWidth="85.5999755859375" text="Delete" />
+         </columns>
+      </TableView>
+      <JFXButton layoutX="123.0" layoutY="378.0" onAction="#btnSaveOnAction" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #27ae60;" text="Save" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>
