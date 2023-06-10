@@ -63,4 +63,11 @@ public class ItemDaoImpl implements ItemDAO {
         return itemList;
     }
 
+    @Override
+    public boolean updateWhenOrder(Item item) throws Exception {
+        return CrudUtil.execute("UPDATE Item SET  qtyOnHand = (qtyOnHand - ? ) WHERE code = ?",
+                item.getQtyOnHand(), item.getCode());
+
+    }
+
 }

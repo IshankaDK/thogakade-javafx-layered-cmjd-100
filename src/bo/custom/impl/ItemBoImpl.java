@@ -6,6 +6,7 @@ import bo.custom.ItemBo;
 import doa.DaoFactory;
 import doa.custom.ItemDAO;
 import dto.ItemDTO;
+import dto.OrderDetailDTO;
 import entity.Item;
 
 public class ItemBoImpl implements ItemBo {
@@ -58,6 +59,22 @@ public class ItemBoImpl implements ItemBo {
             dtoList.add(new ItemDTO(i.getCode()));
         }
         return dtoList;
+    }
+
+    @Override
+    public boolean updateWhenOrder(ArrayList<OrderDetailDTO> orderDetailDTOs) throws Exception {
+        for (OrderDetailDTO orderDetailDTO : orderDetailDTOs) {
+            boolean isUpdated = updateWhenOrder(orderDetailDTO);
+            if (!isUpdated) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateWhenOrder(OrderDetailDTO orderDetailDTOs) throws Exception {
+        return dao.updateWhenOrder(new Item(orderDetailDTOs.getCode(), orderDetailDTOs.getQty()));
     }
 
 }

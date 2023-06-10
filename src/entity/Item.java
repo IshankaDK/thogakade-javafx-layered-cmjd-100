@@ -20,6 +20,11 @@ public class Item implements SuperEntity {
         this.code = code;
     }
 
+    public Item(String code, double qtyOnHand) {
+        this.code = code;
+        this.qtyOnHand = qtyOnHand;
+    }
+
     public String getCode() {
         return code;
     }

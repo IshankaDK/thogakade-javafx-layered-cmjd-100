@@ -5,13 +5,18 @@ import java.util.ArrayList;
 import bo.BoFactory;
 import bo.custom.CustomerBo;
 import bo.custom.ItemBo;
+import bo.custom.OrderBo;
 import dto.CustomerDTO;
 import dto.ItemDTO;
+import dto.OrderDTO;
+import dto.OrderDetailDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -72,12 +77,17 @@ public class OrderController {
     @FXML
     private TextField txtBuyingQty;
 
+    @FXML
+    private TextField txtOrderId;
+
     CustomerBo customerBo;
     ItemBo itemBo;
+    OrderBo bo;
 
     public void initialize() {
         customerBo = BoFactory.getInstance().getBo(BoFactory.BoType.CUSTOMER);
         itemBo = BoFactory.getInstance().getBo(BoFactory.BoType.ITEM);
+        bo = BoFactory.getInstance().getBo(BoFactory.BoType.ORDER);
 
         loadCustomerID();
         loadItemCode();
@@ -118,6 +128,39 @@ public class OrderController {
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
+        try {
+            boolean isSaved = bo.saveOrder(getOrder(), getOrderDetail());
+            if (isSaved) {
+                new Alert(AlertType.CONFIRMATION, "Order is saved.!").show();
+
+            } else {
+                new Alert(AlertType.ERROR, "Order is not saved..!").show();
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public OrderDTO getOrder() {
+        String orderId = txtOrderId.getText();
+        String orderDate = "2023-03-03";
+        Integer customerID = cmbCustomerID.getValue();
+
+        return new OrderDTO(orderId, orderDate, customerID);
+    }
+
+    public ArrayList<OrderDetailDTO> getOrderDetail() {
+        String orderId = txtOrderId.getText();
+
+        ArrayList<OrderDetailDTO> orderDetailDTOs = new ArrayList<>();
+        for (int i = 0; i < tblOrder.getItems().size(); i++) {
+            OrderTM orderTM = tmList.get(i);
+            orderDetailDTOs
+                    .add(new OrderDetailDTO(orderId, orderTM.getCode(), orderTM.getQty(), orderTM.getUnitPrice()));
+
+        }
+        return orderDetailDTOs;
 
     }
 
