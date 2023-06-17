@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import bo.BoFactory;
 import bo.custom.CustomerBo;
@@ -18,6 +19,8 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -26,6 +29,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import view.tm.OrderTM;
+
+import java.time.LocalDate;
 
 public class OrderController {
 
@@ -80,6 +85,11 @@ public class OrderController {
     @FXML
     private TextField txtOrderId;
 
+    @FXML
+    private Label lblSubTotal;
+    @FXML
+    private Label lblDate;
+
     CustomerBo customerBo;
     ItemBo itemBo;
     OrderBo bo;
@@ -88,6 +98,8 @@ public class OrderController {
         customerBo = BoFactory.getInstance().getBo(BoFactory.BoType.CUSTOMER);
         itemBo = BoFactory.getInstance().getBo(BoFactory.BoType.ITEM);
         bo = BoFactory.getInstance().getBo(BoFactory.BoType.ORDER);
+
+        lblDate.setText(String.valueOf(LocalDate.now()));
 
         loadCustomerID();
         loadItemCode();
@@ -111,15 +123,53 @@ public class OrderController {
             Double unitPrice = Double.parseDouble(lblUnitPrice.getText());
             Double qtyOnHand = Double.parseDouble(lblQtyOnHand.getText());
             Double qty = Double.parseDouble(txtBuyingQty.getText());
-            Double total = qty * unitPrice;
+            double total = (qty * unitPrice);
             Button btnRemove = new Button("Remove");
             btnRemove.setMaxSize(100, 50);
             btnRemove.setCursor(Cursor.HAND);
             btnRemove.setStyle("-fx-background-color:#e74c3c; -fx-font-weight:bold");
             btnRemove.setTextFill(Color.web("#ecf0f1"));
 
-            tmList.add(new OrderTM(code, description, unitPrice, qtyOnHand, qty, total, btnRemove));
+            if (!tmList.isEmpty()) {
+                for (int i = 0; i < tblOrder.getItems().size(); i++) {
+                    if (colCode.getCellData(i).equals(code)) {
+                        double tempQty = colQty.getCellData(i);
+                        tempQty += qty;
+                        if (tempQty <= Double.parseDouble(lblQtyOnHand.getText())) {
+                            total = (tempQty * unitPrice);
+                            tmList.get(i).setQty(tempQty);
+                            tmList.get(i).setTotal(total);
+                            getTotal();
+                            tblOrder.refresh();
+                            return;
+                        }
+                    }
+                }
+            }
+            OrderTM orderTM = new OrderTM(code, description, unitPrice, qtyOnHand, qty, total, btnRemove);
+            tmList.add(orderTM);
+
+            btnRemove.setOnAction((e) -> {
+                ButtonType ok = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ?", ok, no);
+
+                Optional<ButtonType> result = alert.showAndWait();
+                try {
+                    if (result.orElse(no) == ok) {
+                        tmList.remove(orderTM);
+                        tblOrder.refresh();
+                        getTotal();
+                    }
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
+            });
             tblOrder.setItems(tmList);
+            getTotal();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -144,7 +194,7 @@ public class OrderController {
 
     public OrderDTO getOrder() {
         String orderId = txtOrderId.getText();
-        String orderDate = "2023-03-03";
+        String orderDate = String.valueOf(LocalDate.now());
         Integer customerID = cmbCustomerID.getValue();
 
         return new OrderDTO(orderId, orderDate, customerID);
@@ -223,5 +273,13 @@ public class OrderController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void getTotal() {
+        double total = 0.0;
+        for (OrderTM orderTM : tmList) {
+            total += orderTM.getTotal();
+        }
+        lblSubTotal.setText(String.valueOf(total));
     }
 }

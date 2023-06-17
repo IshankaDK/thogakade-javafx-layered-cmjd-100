@@ -45,21 +45,21 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <TextField fx:id="txtCustomerId" layoutX="36.0" layoutY="110.0" onAction="#txtCustomerIDOnAction" prefHeight="47.0" prefWidth="265.0" promptText="Customer ID">
+      <TextField fx:id="txtCustomerId" layoutX="36.0" layoutY="110.0" onKeyReleased="#txtIdOnKeyReleased" prefHeight="47.0" prefWidth="265.0" promptText="Customer ID">
          <font>
             <Font size="21.0" />
          </font></TextField>
-      <TextField fx:id="txtCustomerName" layoutX="36.0" layoutY="172.0" prefHeight="47.0" prefWidth="265.0" promptText="Customer Name">
+      <TextField fx:id="txtCustomerName" layoutX="36.0" layoutY="172.0" onKeyReleased="#txtNameOnKeyReleased" prefHeight="47.0" prefWidth="265.0" promptText="Customer Name">
          <font>
             <Font size="21.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtAddress" layoutX="36.0" layoutY="236.0" prefHeight="47.0" prefWidth="265.0" promptText="Address">
+      <TextField fx:id="txtAddress" layoutX="36.0" layoutY="236.0" onKeyPressed="#txtAddressOnKeyReleased" prefHeight="47.0" prefWidth="265.0" promptText="Address">
          <font>
             <Font size="21.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtCustomerSalary" layoutX="36.0" layoutY="299.0" prefHeight="47.0" prefWidth="265.0" promptText="Salary">
+      <TextField fx:id="txtCustomerSalary" layoutX="36.0" layoutY="299.0" onKeyReleased="#txtSalaryOnKeyReleased" prefHeight="47.0" prefWidth="265.0" promptText="Salary">
          <font>
             <Font size="21.0" />
          </font>

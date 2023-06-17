@@ -21,7 +21,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import util.Validator;
 import view.tm.CustomerTM;
 
 public class CustomerController {
@@ -151,8 +154,7 @@ public class CustomerController {
 
     }
 
-    @FXML
-    void txtCustomerIDOnAction(ActionEvent event) {
+    void searchCustomer() {
 
         try {
             int id = Integer.parseInt(txtCustomerId.getText());
@@ -201,5 +203,39 @@ public class CustomerController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void txtIdOnKeyReleased(KeyEvent event) {
+        if (Validator.validateTextField(txtCustomerId, "^[0-9]{1,}$")) {
+            txtCustomerId.setStyle("-fx-focus-color:green");
+            if (event.getCode() == KeyCode.ENTER) {
+                searchCustomer();
+            }
+        } else {
+            txtCustomerId.setStyle("-fx-focus-color:red");
+        }
+    }
+
+    @FXML
+    void txtNameOnKeyReleased(KeyEvent event) {
+        if (Validator.validateTextField(txtCustomerName, "^[A-z| ]{1,}$")) {
+            txtCustomerName.setStyle("-fx-focus-color:green");
+            if (event.getCode() == KeyCode.ENTER) {
+                txtAddress.requestFocus();
+            }
+        } else {
+            txtCustomerName.setStyle("-fx-focus-color:red");
+        }
+    }
+
+    @FXML
+    void txtAddressOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtSalaryOnKeyReleased(KeyEvent event) {
+
     }
 }
